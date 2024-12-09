@@ -35,8 +35,11 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   get: ^4.6.6
+<<<<<<< HEAD
   persistent_bottom_nav_bar: ^6.2.1
   salomon_bottom_bar: ^3.3.2
+=======
+>>>>>>> 8c23785 (Sruktur Path)
 
 dev_dependencies:
   flutter_test:
