@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../component/BottomNavigaton.dart';
+
 class Searchpage extends StatefulWidget {
   const Searchpage({super.key});
 
@@ -10,6 +12,11 @@ class Searchpage extends StatefulWidget {
 class _SearchpageState extends State<Searchpage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      bottomNavigationBar: Bottomnavigation(currentIndex: 2),
+      appBar: AppBar(
+        title: const Text("Search"),
+      ),
+    );
   }
 }
