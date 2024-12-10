@@ -21,35 +21,43 @@ class Bottomnavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SalomonBottomBar(
-        // backgroundColor: Appcolor.textPrimary,
-        itemShape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        // selectedItemColor: Appcolor.Primary,
-        currentIndex: currentIndex,
-        onTap: _onItemTapped,
-        items: [
-          SalomonBottomBarItem(
-              icon: const Icon(
-                Icons.home,
-                color: Colors.grey,
-              ),
-              title: const Text(
-                'Home',
-                style: TextStyle(color: Colors.grey),
-              )),
-          SalomonBottomBarItem(
-              icon: const Icon(Icons.history, color: Colors.grey),
-              title: const Text(
-                'Riwayat',
-                style: TextStyle(color: Colors.grey),
-              )),
-          SalomonBottomBarItem(
-              icon: const Icon(Icons.search, color: Colors.grey),
-              title: const Text(
-                'Search',
-                style: TextStyle(color: Colors.grey),
-              )),
-        ]);
+    return Container(
+      // margin: const EdgeInsets.all(10),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      decoration: const BoxDecoration(
+        color: Color(0XFF0D0D13),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+      ),
+      child: SalomonBottomBar(
+          margin: const EdgeInsets.all(10),
+          itemShape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          // selectedItemColor: Appcolor.Primary,
+          currentIndex: currentIndex,
+          onTap: _onItemTapped,
+          items: [
+            SalomonBottomBarItem(
+                icon: const Icon(
+                  Icons.home,
+                  color: Colors.grey,
+                ),
+                title: const Text(
+                  'Home',
+                  style: TextStyle(color: Colors.grey),
+                )),
+            SalomonBottomBarItem(
+                icon: const Icon(Icons.history, color: Colors.grey),
+                title: const Text(
+                  'Riwayat',
+                  style: TextStyle(color: Colors.grey),
+                )),
+            SalomonBottomBarItem(
+                icon: const Icon(Icons.search, color: Colors.grey),
+                title: const Text(
+                  'Search',
+                  style: TextStyle(color: Colors.grey),
+                )),
+          ]),
+    );
   }
 }
