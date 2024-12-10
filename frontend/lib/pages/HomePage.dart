@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../component/BottomNavigaton.dart';
 import 'dart:ui';
+
+import 'Details/OrderPage.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -26,9 +29,9 @@ class _HomepageState extends State<Homepage> {
               const SizedBox(
                 height: 20,
               ),
-              Row(
+              const Row(
                 children: [
-                  const Column(
+                  Column(
                     children: [
                       Text(
                         "To Night",
@@ -92,57 +95,78 @@ class _HomepageState extends State<Homepage> {
               const SizedBox(
                 height: 15,
               ),
-              SingleChildScrollView(
+              const SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
                     ConDrink(
-                      onTap: () {},
+                      title: "Nama Drink",
+                      description: "Deskripsi Drink",
+                      price: 30000,
+                      diskon: "Diskon",
                       image: "Images/DrinkWater/Jus-1.png",
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: 10,
                     ),
                     ConDrink(
-                      onTap: () {},
+                      title: "Nama Drink",
+                      description: "Deskripsi Drink",
+                      price: 30000,
+                      diskon: "Diskon",
                       image: "Images/DrinkWater/Jus-2.png",
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: 10,
                     ),
                     ConDrink(
-                      onTap: () {},
+                      title: "Nama Drink",
+                      description: "Deskripsi Drink",
+                      price: 30000,
+                      diskon: "Diskon",
                       image: "Images/DrinkWater/Jus-3.png",
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: 10,
                     ),
                     ConDrink(
-                      onTap: () {},
+                      title: "Nama Drink",
+                      description: "Deskripsi Drink",
+                      price: 30000,
+                      diskon: "Diskon",
                       image: "Images/DrinkWater/Jus-4.png",
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: 10,
                     ),
                     ConDrink(
-                      onTap: () {},
+                      title: "Nama Drink",
+                      description: "Deskripsi Drink",
+                      price: 30000,
+                      diskon: "Diskon",
                       image: "Images/DrinkWater/Jus-5.png",
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: 10,
                     ),
                     ConDrink(
-                      onTap: () {},
+                      title: "Nama Drink",
+                      description: "Deskripsi Drink",
+                      price: 30000,
+                      diskon: "Diskon",
                       image: "Images/DrinkWater/Jus-6.png",
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: 10,
                     ),
                     ConDrink(
-                      onTap: () {},
+                      title: "Nama Drink",
+                      description: "Deskripsi Drink",
+                      price: 30000,
+                      diskon: "Diskon",
                       image: "Images/DrinkWater/Jus-7.png",
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: 10,
                     ),
                   ],
@@ -160,18 +184,32 @@ class ConDrink extends StatelessWidget {
   const ConDrink({
     super.key,
     required this.image,
-    required this.onTap,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.diskon,
   });
 
   final String image;
-  final VoidCallback onTap; // Fungsi untuk aksi onTap
+  final String title;
+  final String description;
+  final double price;
+  final String diskon;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         GestureDetector(
-          onTap: onTap,
+          onTap: () {
+            Get.to(() => Orderpage(
+                // title: title,
+                // description: description,
+                // Diskon: diskon,
+                // Image: image,
+                // Price: price,
+                ));
+          },
           child: Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
