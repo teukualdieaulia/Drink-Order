@@ -19,7 +19,8 @@ class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor:
+          const Color(0XFF1E1E2C), // Ubah warna latar belakang menjadi hitam
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -27,18 +28,20 @@ class RegisterPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                "Welcome Onboard!",
+                "Welcome To Drink Order",
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
+                  color: Colors
+                      .white, // Ubah warna teks menjadi putih agar terlihat di latar belakang hitam
                 ),
               ),
               const SizedBox(height: 8),
               const Text(
-                "Let's help you meet up your tasks",
+                "Create your Account",
                 style: TextStyle(
                   fontSize: 16,
-                  color: Colors.grey,
+                  color: Colors.grey, // Tetap menggunakan warna teks abu-abu
                 ),
               ),
               const SizedBox(height: 32),
@@ -114,6 +117,65 @@ class RegisterPage extends StatelessWidget {
                     color: Colors.blue,
                   ),
                 ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              // Ikon untuk login dengan Google, Facebook, dan Apple
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Facebook Button
+                  TextButton.icon(
+                    icon: Image.asset(
+                      'assets/images/facebook.png', // Use your Facebook image
+                      width: 24, // Adjust the width for smaller icons
+                      height: 24, // Adjust the height for smaller icons
+                    ),
+                    label: const Text(
+                      'Facebook',
+                      style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.white), // Customize text style
+                    ),
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.blue, // Background color
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(10), // Rounded corners
+                      ),
+                      minimumSize: Size(150, 30), // Adjust button size
+                    ),
+                    onPressed: () {
+                      // Implement login with Facebook
+                    },
+                  ),
+                  const SizedBox(width: 16),
+                  TextButton.icon(
+                    icon: Image.asset(
+                      'assets/images/google.png', // Use your Google image
+                      width: 24, // Adjust the width for smaller icons
+                      height: 24, // Adjust the height for smaller icons
+                    ),
+                    label: const Text(
+                      'Google',
+                      style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.black), // Customize text style
+                    ),
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.white, // Background color
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(10), // Rounded corners
+                      ),
+                      minimumSize: Size(150, 30), // Adjust button size
+                    ),
+                    onPressed: () {
+                      // Implement login with Google
+                    },
+                  )
+                ],
               ),
             ],
           ),
