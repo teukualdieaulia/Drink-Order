@@ -15,3 +15,9 @@ Pada halaman Pembayaran, pengguna dapat melihat detail minuman yang telah dipili
 
 Pada Halaman Daftar akun,jika pengguna belum memiliki akun ,maka pengguna diharuskan untuk mengisi Nama lengkap,Email,Password,dan Konfirmasi password terlebih dahulu ,kemudian tombol register untuk melakukan pendaftaran ,jika sudah memiliki akun ,pengguna tidak perlu melakukan pendaftaran akun lagi,tinggal menekan tombol sign in,Kemudian pengguna dapat memilih platform sign in, Pengguna bisa melakukan sign in melalui google dan bisa melalui facebook. 
 
+# Nurul Afiqah Simbolon
+### Membuat halaman search :
+![image](https://github.com/user-attachments/assets/3ecbb78a-3b9f-40a5-be9b-00f872305636)
+
+Pada halaman Search, dirancang dengan warna latar belakang yang soft untuk menciptakan suasana yang ramah dan menyenangkan bagi pengguna. Penggunaan elemen visual seperti gambar minuman meningkatkan daya tarik aplikasi, sementara tata letak yang diselenggarakan membantu pengguna menemukan informasi dengan mudah. Halaman search ini cocok digunakan oleh pengguna untuk menelusuri, memilih, atau mencari minuman secara efisien. Adanya elemen pencarian juga mempercepat proses jika pengguna memiliki menu tertentu yang diinginkan. Integrasi fungsi visual dan interaktif ini menampilkan pendekatan desain aplikasi yang mengutamakan kenyamanan pengguna.
+
