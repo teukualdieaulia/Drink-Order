@@ -13,3 +13,5 @@ Pada halaman Pembayaran, pengguna dapat melihat detail minuman yang telah dipili
 ### Membuat halaman daftar akun :
 ![image](https://github.com/user-attachments/assets/2c5a024c-c04a-4007-b2c7-24439811c010)
 
+Pada Halaman Daftar akun,jika pengguna belum memiliki akun ,maka pengguna diharuskan untuk mengisi Nama lengkap,Email,Password,dan Konfirmasi password terlebih dahulu ,kemudian tombol register untuk melakukan pendaftaran ,jika sudah memiliki akun ,pengguna tidak perlu melakukan pendaftaran akun lagi,tinggal menekan tombol sign in,Kemudian pengguna dapat memilih platform sign in, Pengguna bisa melakukan sign in melalui google dan bisa melalui facebook. 
+
