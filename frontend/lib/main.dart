@@ -3,6 +3,8 @@ import 'package:frontend/pages/home.dart';
 import 'pages/register.dart';
 import 'pages/login.dart';
 import 'pages/shop.dart';
+import 'pages/locationOrder.dart';
+
 
 
 void main() {
@@ -41,7 +43,8 @@ class MyApp extends StatelessWidget {
         '/home': (context) => HomePage(),
         '/register': (context) => RegisterPage(),
         '/login': (context) => LoginPage(),
-        '/shop': (context) => ShopPage()
+        '/shop': (context) => ShopPage(),
+        '/location_order': (context) => LocationOrderApp(),
       },
     );
   }
