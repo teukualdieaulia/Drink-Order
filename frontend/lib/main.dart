@@ -4,8 +4,7 @@ import 'pages/register.dart';
 import 'pages/login.dart';
 import 'pages/shop.dart';
 import 'pages/locationOrder.dart';
-
-
+import 'pages/locationTracking.dart';
 
 void main() {
   runApp(const MyApp());
@@ -45,6 +44,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => LoginPage(),
         '/shop': (context) => ShopPage(),
         '/location_order': (context) => LocationOrderApp(),
+        '/order_tracking': (context) => OrderTrackingApp(),
       },
     );
   }
