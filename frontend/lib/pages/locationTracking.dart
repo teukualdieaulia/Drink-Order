@@ -51,17 +51,16 @@ class OrderTrackingPage extends StatelessWidget {
                   child: Container(
                     width: 928.54,
                     height: 453.16,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/image3.png"),
-                        fit: BoxFit.fill,
-                      ),
+                    // Tampilkan gambar langsung sebagai child
+                    child: Image.asset(
+                      'assets/images/image3.png',
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
               ),
 
-              // Latar belakang utama
+              // Latar belakang utama (area abu-abu muda)
               Positioned(
                 left: 0,
                 top: 0,
@@ -179,6 +178,7 @@ class OrderTrackingPage extends StatelessWidget {
                   decoration: const BoxDecoration(),
                   child: Stack(
                     children: [
+                      // Background card
                       Positioned(
                         left: 0,
                         top: 0,
@@ -204,7 +204,7 @@ class OrderTrackingPage extends StatelessWidget {
                           ),
                           child: Center(
                             child: Image.asset(
-                              "assets/icon/Icon5.png",  // Gunakan Image.asset untuk aset lokal
+                              "assets/icon/Icon5.png",
                               width: 42,
                               height: 28,
                               fit: BoxFit.fill,
