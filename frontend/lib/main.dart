@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:frontend/pages/home.dart';
 import 'pages/register.dart';
 import 'pages/login.dart';
+import 'pages/shop.dart';
 
 
 void main() {
@@ -39,7 +40,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/home': (context) => HomePage(),
         '/register': (context) => RegisterPage(),
-        '/login': (context) => LoginPage()
+        '/login': (context) => LoginPage(),
+        '/shop': (context) => ShopPage()
       },
     );
   }
