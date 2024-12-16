@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'pages/Details/Details.dart';
 import 'pages/HomePage.dart';
 import 'pages/LoginPage.dart';
-import 'pages/OrderPage.dart';
+import 'pages/Details/OrderPage.dart';
 import 'pages/RegistrasiPage.dart';
 import 'pages/RiwayatPage.dart';
 import 'pages/SearchPage.dart';
@@ -44,6 +45,10 @@ class DrinkOrderApp extends StatelessWidget {
             transition: Transition.fadeIn,
             name: "/search",
             page: () => const Searchpage()),
+        GetPage(
+            transition: Transition.fadeIn,
+            name: "/Details",
+            page: () => const Details()),
       ],
     );
   }
