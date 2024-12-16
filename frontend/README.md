@@ -19,6 +19,11 @@ Pada halaman Pembayaran, pengguna dapat melihat detail minuman yang telah dipili
 ### Membuat halaman daftar akun :
 ![image](https://github.com/user-attachments/assets/8af368cd-0130-49d1-bae9-d0a929e1b1f5)
 
+
+Pada Halaman Daftar akun,jika pengguna belum memiliki akun ,maka pengguna diharuskan untuk mengisi Nama lengkap,Email,Password,dan Konfirmasi password terlebih dahulu ,kemudian tombol register untuk melakukan pendaftaran ,jika sudah memiliki akun ,pengguna tidak perlu melakukan pendaftaran akun lagi,tinggal menekan tombol sign in,Kemudian pengguna dapat memilih platform sign in, Pengguna bisa melakukan sign in melalui google dan bisa melalui facebook. 
+
+# Rizki Ananda 
+### Membuat Halaman Riwayat
 ![image](https://github.com/user-attachments/assets/14702ab9-d630-4446-b061-b86dfffa6944)
 
 ![image](https://github.com/user-attachments/assets/efdc7996-10c8-483e-9ee9-5cf511e0dae7)
@@ -29,12 +34,6 @@ Pada halaman Pembayaran, pengguna dapat melihat detail minuman yang telah dipili
 
 ![image](https://github.com/user-attachments/assets/b1f38bdf-06f4-402e-868c-58353506cdf1)
 
-
-
-Pada Halaman Daftar akun,jika pengguna belum memiliki akun ,maka pengguna diharuskan untuk mengisi Nama lengkap,Email,Password,dan Konfirmasi password terlebih dahulu ,kemudian tombol register untuk melakukan pendaftaran ,jika sudah memiliki akun ,pengguna tidak perlu melakukan pendaftaran akun lagi,tinggal menekan tombol sign in,Kemudian pengguna dapat memilih platform sign in, Pengguna bisa melakukan sign in melalui google dan bisa melalui facebook. 
-
-# Rizki Ananda 
-### Membuat Halaman Riwayat
 ![image](https://github.com/user-attachments/assets/48ebac46-94a3-4896-a910-2c816f174e8c)
 
 # Nurul Afiqah Simbolon
