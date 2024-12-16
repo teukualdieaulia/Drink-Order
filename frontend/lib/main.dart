@@ -44,7 +44,7 @@ class DrinkOrderApp extends StatelessWidget {
         GetPage(
             transition: Transition.fadeIn,
             name: "/search",
-            page: () => const Searchpage()),
+            page: () => const SearchPage()),
         GetPage(
             transition: Transition.fadeIn,
             name: "/Details",
