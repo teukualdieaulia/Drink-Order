@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(DrinkOrderApp());
+  runApp(const DrinkOrderApp());
 }
 
 class DrinkOrderApp extends StatelessWidget {
@@ -10,17 +10,18 @@ class DrinkOrderApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData.dark(),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-        home: const DrinkOrderApp(),
+      debugShowCheckedModeBanner: false, // Menyembunyikan banner debug
+      title: 'Flutter Demo', // Judul aplikasi
+      theme: ThemeData.dark().copyWith(
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.deepPurple), // Menambahkan warna scheme
       ),
+      home: const MainMenuScreen(), // Ganti home ke MainMenuScreen
     );
   }
 }
 
+// Main Menu Screen
 class MainMenuScreen extends StatelessWidget {
   const MainMenuScreen({super.key});
 
@@ -50,7 +51,7 @@ class MainMenuScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const DrinkOrderApp()),
+                      builder: (context) => const DrinkOrderScreen()),
                 );
               },
               child: const Text('Drink Order App'),
@@ -62,7 +63,7 @@ class MainMenuScreen extends StatelessWidget {
   }
 }
 
-// Counter App Code
+// Counter App
 class CounterApp extends StatelessWidget {
   const CounterApp({super.key});
 
@@ -122,20 +123,7 @@ class _CounterScreenState extends State<CounterScreen> {
   }
 }
 
-// Drink Order App Code
-class DrinkOrderApp extends StatelessWidget {
-  const DrinkOrderApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
-      home: const DrinkOrderScreen(),
-    );
-  }
-}
-
+// Drink Order App
 class DrinkOrderScreen extends StatefulWidget {
   const DrinkOrderScreen({super.key});
 
@@ -161,9 +149,6 @@ class _DrinkOrderScreenState extends State<DrinkOrderScreen> {
   }
 
   int currentPage = 0; // 0 = Home, 1 = Orders
-  int quantity = 1;
-  String selectedDrink = "";
-
   List<Map<String, dynamic>> drinks = [
     {
       'name': 'Blackberry',
@@ -247,6 +232,15 @@ class _DrinkOrderScreenState extends State<DrinkOrderScreen> {
         return ListTile(
           title: Text(drinks[index]['name']),
           subtitle: Text(drinks[index]['subtitle']),
+          trailing: Text('\$${drinks[index]['price']}'),
+          onTap: () {
+            setState(() {
+              orders.add({
+                'name': drinks[index]['name'],
+                'quantity': int.parse(quantityController.text),
+              });
+            });
+          },
         );
       },
     );
