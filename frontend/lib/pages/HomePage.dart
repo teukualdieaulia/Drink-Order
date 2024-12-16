@@ -103,7 +103,7 @@ class _HomepageState extends State<Homepage> {
                       title: "Nama Drink",
                       description: "Deskripsi Drink",
                       price: 30000,
-                      diskon: "Diskon",
+                      diskon: 20,
                       image: "Images/DrinkWater/Jus-1.png",
                     ),
                     SizedBox(
@@ -113,7 +113,7 @@ class _HomepageState extends State<Homepage> {
                       title: "Nama Drink",
                       description: "Deskripsi Drink",
                       price: 30000,
-                      diskon: "Diskon",
+                      diskon: 30,
                       image: "Images/DrinkWater/Jus-2.png",
                     ),
                     SizedBox(
@@ -123,7 +123,7 @@ class _HomepageState extends State<Homepage> {
                       title: "Nama Drink",
                       description: "Deskripsi Drink",
                       price: 30000,
-                      diskon: "Diskon",
+                      diskon: 40,
                       image: "Images/DrinkWater/Jus-3.png",
                     ),
                     SizedBox(
@@ -133,7 +133,7 @@ class _HomepageState extends State<Homepage> {
                       title: "Nama Drink",
                       description: "Deskripsi Drink",
                       price: 30000,
-                      diskon: "Diskon",
+                      diskon: 10,
                       image: "Images/DrinkWater/Jus-4.png",
                     ),
                     SizedBox(
@@ -143,7 +143,7 @@ class _HomepageState extends State<Homepage> {
                       title: "Nama Drink",
                       description: "Deskripsi Drink",
                       price: 30000,
-                      diskon: "Diskon",
+                      diskon: 90,
                       image: "Images/DrinkWater/Jus-5.png",
                     ),
                     SizedBox(
@@ -153,7 +153,7 @@ class _HomepageState extends State<Homepage> {
                       title: "Nama Drink",
                       description: "Deskripsi Drink",
                       price: 30000,
-                      diskon: "Diskon",
+                      diskon: 100,
                       image: "Images/DrinkWater/Jus-6.png",
                     ),
                     SizedBox(
@@ -163,7 +163,7 @@ class _HomepageState extends State<Homepage> {
                       title: "Nama Drink",
                       description: "Deskripsi Drink",
                       price: 30000,
-                      diskon: "Diskon",
+                      diskon: 20,
                       image: "Images/DrinkWater/Jus-7.png",
                     ),
                     SizedBox(
@@ -194,7 +194,7 @@ class ConDrink extends StatelessWidget {
   final String title;
   final String description;
   final double price;
-  final String diskon;
+  final double diskon;
 
   @override
   Widget build(BuildContext context) {
@@ -202,12 +202,12 @@ class ConDrink extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            Get.to(() => Orderpage(
-                // title: title,
-                // description: description,
-                // Diskon: diskon,
-                // Image: image,
-                // Price: price,
+            Get.to(() => OrderPage(
+                  title: title,
+                  description: description,
+                  discount: diskon,
+                  image: image,
+                  price: price,
                 ));
           },
           child: Container(

@@ -1,305 +1,528 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class Orderpage extends StatefulWidget {
-  const Orderpage({
+class OrderPage extends StatefulWidget {
+  const OrderPage({
     super.key,
-    // required this.title,
-    // required this.description,
-    // required this.Price,
-    // required this.Diskon,
-    // required this.Image,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.discount,
+    required this.image,
+    this.alcohol = 13,
+    this.initialQuantity = 1,
   });
 
-  final String title = "";
-  final String description = "";
-  final double Price = 0;
-  final String Diskon = "";
-  final String Image = "";
+  final String title;
+  final String description;
+  final double price;
+  final double discount;
+  final String image;
+  final double alcohol;
+  final int initialQuantity;
 
   @override
-  State<Orderpage> createState() => _OrderpageState();
+  State<OrderPage> createState() => _OrderPageState();
 }
 
-class _OrderpageState extends State<Orderpage> {
+class _OrderPageState extends State<OrderPage> {
+  late int quantity;
+  late double totalPrice;
+
+  @override
+  void initState() {
+    super.initState();
+    quantity = widget.initialQuantity;
+    _calculateTotal();
+  }
+
+  void _calculateTotal() {
+    final discountedPrice = widget.price * (1 - widget.discount / 100);
+    totalPrice = discountedPrice * quantity;
+  }
+
+  void _incrementQuantity() {
+    setState(() {
+      quantity++;
+      _calculateTotal();
+    });
+  }
+
+  void _decrementQuantity() {
+    if (quantity > 1) {
+      setState(() {
+        quantity--;
+        _calculateTotal();
+      });
+    }
+  }
+
+// Add this method in _OrderPageState class to show success dialog
+  void _showSuccessDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: const Color(0XFF1E1E2C),
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  spreadRadius: 5,
+                  blurRadius: 10,
+                ),
+              ],
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: Colors.green.withOpacity(0.1),
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.check_circle,
+                    color: Colors.green,
+                    size: 50,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                const Text(
+                  'Pembayaran Berhasil!',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  'Total pembayaran: Rp ${totalPrice.toStringAsFixed(2)}',
+                  style: const TextStyle(
+                    color: Colors.white70,
+                    fontSize: 16,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                      vertical: 12,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  onPressed: () => {
+                    Navigator.pop(context),
+                    Get.toNamed('/'),
+                  },
+                  child: const Text(
+                    'Selesai',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+// Replace the existing _handlePayment method with this improved version
+  void _handlePayment() {
+    showDialog(
+      context: context,
+      builder: (context) => Dialog(
+        backgroundColor: Colors.transparent,
+        child: Container(
+          padding: const EdgeInsets.all(24),
+          decoration: BoxDecoration(
+            color: const Color(0XFF1E1E2C),
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.2),
+                spreadRadius: 5,
+                blurRadius: 10,
+              ),
+            ],
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                'Konfirmasi Pembayaran',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 20),
+              Container(
+                padding: const EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  color: const Color(0XFF15151F),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Column(
+                  children: [
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Metode Pembayaran',
+                          style: TextStyle(color: Colors.white70),
+                        ),
+                        Text(
+                          'Transfer Bank',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    ),
+                    const Divider(color: Colors.grey, height: 30),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Total Pembayaran',
+                          style: TextStyle(color: Colors.white70),
+                        ),
+                        Text(
+                          'Rp ${totalPrice.toStringAsFixed(2)}',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 30),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 15),
+                      ),
+                      onPressed: () => Navigator.pop(context),
+                      child: const Text(
+                        'Batal',
+                        style: TextStyle(
+                          color: Colors.white70,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.orange,
+                        padding: const EdgeInsets.symmetric(vertical: 15),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                        _showSuccessDialog();
+                      },
+                      child: const Text(
+                        'Bayar',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0XFF1E1E2C),
       body: Stack(
         children: [
+          // Image Header
           Positioned(
             top: 0,
             left: 0,
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.5,
-              child: Image.asset(
-                widget.Image,
-                fit: BoxFit.cover,
+            child: Hero(
+              tag: widget.image,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * 0.5,
+                child: Image.asset(
+                  widget.image,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
+
+          // Back Button
           Positioned(
             top: 30,
             left: 10,
             child: IconButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0XFF1E1E2C),
+              style: IconButton.styleFrom(
+                backgroundColor: Colors.black54,
+                padding: const EdgeInsets.all(12),
               ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
+              onPressed: () => Navigator.pop(context),
               icon: const Icon(
                 Icons.arrow_back_ios_new,
                 color: Colors.white,
               ),
             ),
           ),
+
+          // Main Content
           Positioned(
             top: MediaQuery.of(context).size.height * 0.4,
             left: 0,
             right: 0,
             bottom: 0,
             child: Container(
-              padding: const EdgeInsets.only(
-                  top: 40, right: 40, left: 40, bottom: 20),
+              padding: const EdgeInsets.fromLTRB(40, 40, 40, 20),
               decoration: const BoxDecoration(
                 color: Color(0XFF1E1E2C),
                 borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "nama " + widget.title,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.white),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Title and Description
+                    Text(
+                      widget.title,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
+                        color: Colors.white,
                       ),
-                      Text("Deskripsi " + widget.description,
-                          style: const TextStyle(
-                              fontSize: 15, color: Colors.white)),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _buildTag("13%", "Alkohol"),
-                      const SizedBox(width: 19),
-                      _buildTag("13%", "Alkohol"),
-                      const SizedBox(width: 19),
-                      _buildTag("13%", "Alkohol"),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          color: const Color(0XFF15151F),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const Row(
-                          children: [
-                            Text(
-                              "Rp 80 ",
-                              style: TextStyle(
-                                  fontSize: 16,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      widget.description,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.white70,
+                      ),
+                    ),
+
+                    const SizedBox(height: 30),
+
+                    // Tags
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        _buildTag("${widget.alcohol}%", "Alkohol"),
+                        _buildTag("${widget.discount}%", "Diskon"),
+                        _buildTag("Premium", "Kualitas"),
+                      ],
+                    ),
+
+                    const SizedBox(height: 30),
+
+                    // Price Information
+                    Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: const Color(0XFF15151F),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Rp ${widget.price.toStringAsFixed(2)}",
+                                style: const TextStyle(
+                                  fontSize: 18,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.white),
-                            ),
-                            Text(
-                              "Price x Drink",
-                              style: TextStyle(color: Colors.white),
-                            )
-                          ],
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          color: const Color(0XFF15151F),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const Row(
-                          children: [
-                            Text(
-                              "Rp 20 ",
-                              style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold),
+                                  decoration: TextDecoration.lineThrough,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                "Rp ${(widget.price * (1 - widget.discount / 100)).toStringAsFixed(2)}",
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.green,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              const Text(
+                                "Total",
+                                style: TextStyle(
+                                  color: Colors.white70,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                "Rp ${totalPrice.toStringAsFixed(2)}",
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    // Quantity Control
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          IconButton(
+                            style: IconButton.styleFrom(
+                              backgroundColor: const Color(0xFF1E1E2C),
+                              padding: const EdgeInsets.all(12),
                             ),
+                            onPressed: _decrementQuantity,
+                            icon: const Icon(Icons.remove, color: Colors.white),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 20,
+                              vertical: 8,
+                            ),
+                            decoration: BoxDecoration(
+                              color: const Color(0XFF7B7794),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Text(
+                              quantity.toString(),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            style: IconButton.styleFrom(
+                              backgroundColor: const Color(0xFF1E1E2C),
+                              padding: const EdgeInsets.all(12),
+                            ),
+                            onPressed: _incrementQuantity,
+                            icon: const Icon(Icons.add, color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    // Pay Button
+                    Center(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.orange,
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 40,
+                            vertical: 15,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        ),
+                        onPressed: _handlePayment,
+                        child: const Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.payment, color: Colors.white),
+                            SizedBox(width: 8),
                             Text(
-                              "Total Price",
-                              style: TextStyle(color: Colors.white),
-                            )
+                              "Bayar Sekarang",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ],
                         ),
                       ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  const Text("Total Order",
-                      style: TextStyle(color: Colors.white, fontSize: 20)),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  const Row(
-                    children: [
-                      Column(
-                        children: [
-                          Icon(Icons.local_drink_outlined, color: Colors.grey),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text("Total Drinks",
-                              style: TextStyle(color: Colors.grey)),
-                        ],
-                      ),
-                      SizedBox(
-                        width: 30,
-                      ),
-                      Column(
-                        children: [
-                          Text("Rp 80",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 20)),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text("Total Price",
-                              style: TextStyle(color: Colors.grey)),
-                        ],
-                      ),
-                    ],
-                  )
-                ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-          Positioned(
-              right: 20,
-              top: MediaQuery.of(context).size.height * 0.32,
-              child: Container(
-                width: 90,
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: const Color(0XFF3B384D),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                // ignore: prefer_const_constructors
-                child: Column(
-                  children: [
-                    IconButton(
-                        style: IconButton.styleFrom(
-                            backgroundColor: const Color(0xFF1E1E2C)),
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.add,
-                          color: Colors.white,
-                        )),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 5, horizontal: 13),
-                        decoration: BoxDecoration(
-                          color: const Color(0XFF7B7794),
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                        child: const Text(
-                          "2",
-                          style: TextStyle(color: Colors.white, fontSize: 18),
-                        )),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    IconButton(
-                        padding: const EdgeInsets.all(8),
-                        style: IconButton.styleFrom(
-                          backgroundColor: const Color(0xFF1E1E2C),
-                        ),
-                        onPressed: () {},
-                        icon: const Icon(
-                          color: Colors.white,
-                          Icons.remove,
-                        )),
-                  ],
-                ),
-              )),
-          Positioned(
-              right: 20,
-              top: MediaQuery.of(context).size.height * 0.82,
-              child: Container(
-                padding: const EdgeInsets.only(top: 30),
-                width: 90,
-                decoration: BoxDecoration(
-                  color: const Color(0XFF3B384D),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                // ignore: prefer_const_constructors
-                child: Column(
-                  children: [
-                    Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 5, horizontal: 10),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: Colors.black,
-                        ),
-                        child: const Icon(Icons.payment, color: Colors.orange)),
-                    ElevatedButton(
-                        style: IconButton.styleFrom(
-                          padding: EdgeInsets.zero,
-                          backgroundColor: Colors.transparent,
-                          elevation: 0,
-                        ),
-                        onPressed: () {},
-                        child: const Text(
-                          "Pay",
-                          style: TextStyle(color: Colors.white, fontSize: 18),
-                        )),
-                  ],
-                ),
-              )),
         ],
       ),
     );
   }
 
-  // Helper method to avoid repetition
   Widget _buildTag(String value, String label) {
     return Container(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 10,
+      ),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
-        color: const Color(0XFF1E1E2C),
-        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Colors.grey.shade800),
+        color: const Color(0XFF15151F),
+        borderRadius: BorderRadius.circular(15),
       ),
       child: Column(
         children: [
           Text(
             value,
-            style: const TextStyle(color: Colors.white),
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
           ),
+          const SizedBox(height: 4),
           Text(
             label,
-            style: const TextStyle(color: Colors.white),
+            style: const TextStyle(
+              color: Colors.grey,
+              fontSize: 14,
+            ),
           ),
         ],
       ),

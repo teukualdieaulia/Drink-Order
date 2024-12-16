@@ -18,7 +18,7 @@ class DrinkOrderApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: "/",
+      initialRoute: "/registrasi",
       getPages: [
         GetPage(
             transition: Transition.fadeIn,
@@ -32,10 +32,6 @@ class DrinkOrderApp extends StatelessWidget {
             transition: Transition.fadeIn,
             name: "/login",
             page: () => const LoginPage()),
-        GetPage(
-            transition: Transition.fadeIn,
-            name: "/Order",
-            page: () => const Orderpage()),
         GetPage(
             transition: Transition.fadeIn,
             name: "/riwayat",
