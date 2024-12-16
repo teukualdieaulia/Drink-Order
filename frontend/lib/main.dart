@@ -1,7 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'pages/HomePage.dart';
+import 'pages/LoginPage.dart';
+import 'pages/OrderPage.dart';
+import 'pages/RegistrasiPage.dart';
+import 'pages/RiwayatPage.dart';
+import 'pages/SearchPage.dart';
 
 void main() {
   runApp(const DrinkOrderApp());
+}
+
+class DrinkOrderApp extends StatelessWidget {
+  const DrinkOrderApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: "/",
+      getPages: [
+        GetPage(
+            transition: Transition.fadeIn,
+            name: "/",
+            page: () => const Homepage()),
+        GetPage(
+            transition: Transition.fadeIn,
+            name: "/registrasi",
+            page: () => const RegistrasiPage()),
+        GetPage(
+            transition: Transition.fadeIn,
+            name: "/login",
+            page: () => const LoginPage()),
+        GetPage(
+            transition: Transition.fadeIn,
+            name: "/Order",
+            page: () => const Orderpage()),
+        GetPage(
+            transition: Transition.fadeIn,
+            name: "/riwayat",
+            page: () => const Riwayatpage()),
+        GetPage(
+            transition: Transition.fadeIn,
+            name: "/search",
+            page: () => const Searchpage()),
+      ],
+    );
+  }
 }
 
 class DrinkOrderApp extends StatelessWidget {
@@ -10,120 +55,13 @@ class DrinkOrderApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, // Menyembunyikan banner debug
-      title: 'Flutter Demo', // Judul aplikasi
-      theme: ThemeData.dark().copyWith(
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.deepPurple), // Menambahkan warna scheme
-      ),
-      home: const MainMenuScreen(), // Ganti home ke MainMenuScreen
-    );
-  }
-}
-
-// Main Menu Screen
-class MainMenuScreen extends StatelessWidget {
-  const MainMenuScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Main Menu'),
-        backgroundColor: Colors.deepPurple,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const CounterApp()),
-                );
-              },
-              child: const Text('Counter App'),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const DrinkOrderScreen()),
-                );
-              },
-              child: const Text('Drink Order App'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-// Counter App
-class CounterApp extends StatelessWidget {
-  const CounterApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const CounterScreen(),
+      theme: ThemeData.dark(),
+      home: const DrinkOrderScreen(),
     );
   }
 }
 
-class CounterScreen extends StatefulWidget {
-  const CounterScreen({super.key});
-
-  @override
-  State<CounterScreen> createState() => _CounterScreenState();
-}
-
-class _CounterScreenState extends State<CounterScreen> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Counter App'),
-        backgroundColor: Colors.deepPurple,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        backgroundColor: Colors.deepPurple,
-        child: const Icon(Icons.add),
-      ),
-    );
-  }
-}
-
-// Drink Order App
 class DrinkOrderScreen extends StatefulWidget {
   const DrinkOrderScreen({super.key});
 
