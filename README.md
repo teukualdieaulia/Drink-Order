@@ -136,6 +136,7 @@ Aplikasi **Drink Orders** ini dibangun oleh tim yang luar biasa:
 - **Muhammad Rafli Aulia**
 - **Rizki Ananda**
 - **Nurul Agustina**
+- **Teuku Aldie Aulia**
 
 ---
 
